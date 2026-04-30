@@ -249,18 +249,18 @@ gl_accounts:
 # ---------------------------------------------------------------------------
 versions:
   codes:
-    - 010   # Actual
-    - 100   # Budget
-    - 110   # Revised Budget
-    - 120   # Latest Estimate
-    - 130   # Rolling Forecast
-    - 200   # Long Range Plan
-    - 300   # Strategic Plan
+    - "010"   # Actual
+    - "100"   # Budget
+    - "110"   # Revised Budget
+    - "120"   # Latest Estimate
+    - "130"   # Rolling Forecast
+    - "200"   # Long Range Plan
+    - "300"   # Strategic Plan
   groups:
-    Actual: [010]
-    Budget: [100, 110]
-    Forecast: [120, 130]
-    Plan: [200, 300]
+    Actual: ["010"]
+    Budget: ["100", "110"]
+    Forecast: ["120", "130"]
+    Plan: ["200", "300"]
 
 # ---------------------------------------------------------------------------
 # PROFIT CENTERS
