@@ -446,7 +446,7 @@ register("CIS_fact",
 
 register("consolidated_balance_sheet_fact",
          gen_consolidated_balance_sheet_fact,
-         partition_cols=["fiscal_year_period_nbr"],
+         # partition_cols=["fiscal_year_period_nbr"],
          zorder_cols=["financial_statement_item_cd"])
 
 register("general_ledger_fact",
