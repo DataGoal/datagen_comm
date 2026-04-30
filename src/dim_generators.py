@@ -825,12 +825,14 @@ def _gen_profit_center_hierarchy(spark, pk_col, extra_cols, n) -> DataFrame:
 
 
 def gen_segment_profit_center_hierarchy(spark: SparkSession, ctx: GenerationContext) -> DataFrame:
-    n = get_dim_row_count("segment_profit_center_hierarchy")
-    return _gen_profit_center_hierarchy(
+    n  = get_dim_row_count("segment_profit_center_hierarchy")
+    df = _gen_profit_center_hierarchy(
         spark, "segment_profit_center_nbr",
         {"profit_center_hierarchy_nm": lambda c: F.concat(F.lit("Segment PC Hierarchy "), c.cast(StringType()))},
         n
     )
+    return df.withColumn("segment_profit_center_nbr",
+        F.col("segment_profit_center_nbr").cast(StringType()))
 
 
 def gen_DisChannel_profit_center_hierarchy(spark: SparkSession, ctx: GenerationContext) -> DataFrame:

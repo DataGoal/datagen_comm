@@ -72,7 +72,7 @@ print(f"Registered tables: {list(TABLE_REGISTRY.keys())}")
 # COMMAND ----------
 
 # ── 2. Spark configuration ────────────────────────────────────────────────────
-configure_spark(spark)
+# configure_spark(spark)
 
 gen_cfg = get_generation_config()
 print("Generation config:")
