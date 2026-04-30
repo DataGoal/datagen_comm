@@ -1,0 +1,348 @@
+# =============================================================================
+# DISTRIBUTIONS CONFIGURATION
+# =============================================================================
+# Defines realistic domain values and probability weights for each field.
+# The generator uses these pools to produce logically consistent data.
+# =============================================================================
+
+global:
+  seed: 42                       # Reproducible generation
+  null_probability_default: 0.0  # 0 % null unless overridden per field
+
+# ---------------------------------------------------------------------------
+# CURRENCIES & EXCHANGE
+# ---------------------------------------------------------------------------
+currencies:
+  codes: [USD, EUR, GBP, JPY, CNY, KRW, CAD, AUD, CHF, BRL, MXN, INR, SGD, HKD, SEK]
+  weights: [35, 20, 10, 8, 7, 4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
+  base_currency: USD            # Company / group currency
+
+exchange_rates:
+  # Approximate mid-market rates vs USD
+  EUR: 0.92
+  GBP: 0.79
+  JPY: 149.5
+  CNY: 7.24
+  KRW: 1340.0
+  CAD: 1.36
+  AUD: 1.53
+  CHF: 0.89
+  BRL: 4.98
+  MXN: 17.2
+  INR: 83.1
+  SGD: 1.34
+  HKD: 7.82
+  SEK: 10.4
+
+# ---------------------------------------------------------------------------
+# FINANCIAL DIMENSIONS
+# ---------------------------------------------------------------------------
+fiscal:
+  # Fiscal year starts in June (period 1 = June)
+  fiscal_year_start_month: 6
+  periods_per_year: 13            # Nike uses 13-period fiscal calendar
+  # Relative weights by fiscal period (period 13 = year-end is heavier)
+  period_weights: [7,7,8,8,8,8,8,8,8,8,8,9,5]
+
+amounts:
+  # transaction_currency_amt range by GL account category
+  revenue:
+    min: 10_000
+    max: 50_000_000
+    distribution: log_normal
+    mean: 500_000
+    std_dev: 1_000_000
+  cogs:
+    min: 5_000
+    max: 25_000_000
+    distribution: log_normal
+    mean: 250_000
+    std_dev: 500_000
+  opex:
+    min: 1_000
+    max: 5_000_000
+    distribution: log_normal
+    mean: 100_000
+    std_dev: 200_000
+  # Negative amounts (returns, adjustments) probability
+  negative_probability: 0.12
+
+quantities:
+  sales_qty_min: 1
+  sales_qty_max: 100_000
+  returns_qty_ratio: 0.08       # returns ~ 8% of sales qty
+
+# ---------------------------------------------------------------------------
+# COMPANIES & GEOGRAPHIES
+# ---------------------------------------------------------------------------
+companies:
+  names:
+    - Nike USA Inc
+    - Nike Europe BV
+    - Nike Japan KK
+    - Nike Greater China Ltd
+    - Nike Canada Corp
+    - Nike Australia Pty Ltd
+    - Nike UK Ltd
+    - Nike Korea Ltd
+    - Nike Brazil Ltda
+    - Nike Mexico SA de CV
+    - Converse Inc
+    - Nike Direct
+    - Nike Digital
+    - Jordan Brand
+    - Nike Golf
+  currencies:
+    - USD
+    - EUR
+    - JPY
+    - CNY
+    - CAD
+    - AUD
+    - GBP
+    - KRW
+    - BRL
+    - MXN
+    - USD
+    - USD
+    - USD
+    - USD
+    - USD
+
+geographies:
+  regions: [North America, EMEA, Greater China, APLA]
+  region_weights: [35, 30, 20, 15]
+  territories:
+    North America: [USA, Canada, Mexico]
+    EMEA: [UK, Germany, France, Netherlands, Italy, Spain, Nordics, Middle East, Africa]
+    Greater China: [China Mainland, Hong Kong, Taiwan]
+    APLA: [Japan, Korea, Southeast Asia, Australia, New Zealand, India, Brazil, Argentina]
+  countries:
+    - US
+    - GB
+    - DE
+    - FR
+    - NL
+    - JP
+    - CN
+    - HK
+    - KR
+    - CA
+    - AU
+    - BR
+    - MX
+    - IN
+    - SG
+
+# ---------------------------------------------------------------------------
+# PRODUCTS
+# ---------------------------------------------------------------------------
+products:
+  brands: [Nike, Jordan, Converse]
+  brand_weights: [70, 20, 10]
+
+  categories:
+    - Footwear
+    - Apparel
+    - Equipment
+    - Accessories
+  category_weights: [55, 35, 6, 4]
+
+  genders: [Mens, Womens, Kids, Unisex]
+  gender_weights: [40, 35, 15, 10]
+
+  platforms:
+    - Running
+    - Training
+    - Basketball
+    - Football/Soccer
+    - Lifestyle
+    - Golf
+    - Tennis
+    - Baseball
+    - Skateboarding
+    - CrossFit
+
+  silhouettes:
+    - Low Top
+    - Mid Top
+    - High Top
+    - Slip On
+    - Sandal
+    - Boot
+    - Trainer
+    - Short
+    - Pant
+    - Jacket
+    - Top
+    - Bra
+    - Sock
+
+  franchises:
+    - Air Max
+    - Air Force
+    - Jordan
+    - React
+    - ZoomX
+    - Free
+    - Pegasus
+    - Vaporfly
+    - Metcon
+    - Flex
+    - Dri-FIT
+    - Therma-FIT
+
+  price_range:
+    min_style_nbr: 100000
+    max_style_nbr: 999999
+
+# ---------------------------------------------------------------------------
+# CUSTOMERS
+# ---------------------------------------------------------------------------
+customers:
+  channel_descs:
+    - Nike Direct
+    - Wholesale
+    - Digital
+    - Retail Partner
+    - Department Store
+    - Sporting Goods
+    - Pure Player Digital
+  channel_weights: [25, 30, 20, 10, 5, 5, 5]
+
+  marketplace_channels:
+    - Nike.com
+    - Nike App
+    - SNKRS
+    - Nike Stores
+    - Nike Factory Store
+    - Nike Community Store
+    - Wholesale Digital
+    - Traditional Wholesale
+
+  business_types:
+    - Direct to Consumer
+    - Wholesale
+    - Digital Native
+
+# ---------------------------------------------------------------------------
+# GL ACCOUNTS
+# ---------------------------------------------------------------------------
+gl_accounts:
+  # Account number ranges by category
+  ranges:
+    revenue:       { start: 1000000, end: 1999999, sign: credit }
+    cogs:          { start: 2000000, end: 2999999, sign: debit  }
+    gross_profit:  { start: 3000000, end: 3099999, sign: credit }
+    selling:       { start: 4000000, end: 4499999, sign: debit  }
+    admin:         { start: 4500000, end: 4999999, sign: debit  }
+    rd:            { start: 5000000, end: 5499999, sign: debit  }
+    other_income:  { start: 6000000, end: 6499999, sign: credit }
+    other_expense: { start: 6500000, end: 6999999, sign: debit  }
+    tax:           { start: 7000000, end: 7499999, sign: debit  }
+  category_weights: [20, 25, 5, 15, 10, 10, 5, 5, 5]
+
+  chart_of_accounts: [US01, EU01, JP01, CN01, CONSO]
+
+# ---------------------------------------------------------------------------
+# VERSIONS / FORECASTS
+# ---------------------------------------------------------------------------
+versions:
+  codes:
+    - 010   # Actual
+    - 100   # Budget
+    - 110   # Revised Budget
+    - 120   # Latest Estimate
+    - 130   # Rolling Forecast
+    - 200   # Long Range Plan
+    - 300   # Strategic Plan
+  groups:
+    Actual: [010]
+    Budget: [100, 110]
+    Forecast: [120, 130]
+    Plan: [200, 300]
+
+# ---------------------------------------------------------------------------
+# PROFIT CENTERS
+# ---------------------------------------------------------------------------
+profit_centers:
+  segments:
+    - North America
+    - EMEA
+    - Greater China
+    - APLA
+    - Global Brand Divisions
+    - Corporate
+  segment_weights: [30, 25, 20, 15, 5, 5]
+  channels:
+    - Wholesale
+    - Direct
+    - Digital
+    - Factory
+  operating_segments:
+    - Consumer Direct Acceleration
+    - Wholesale Partners
+    - Digital Commerce
+
+# ---------------------------------------------------------------------------
+# FUNCTIONAL AREAS
+# ---------------------------------------------------------------------------
+functional_areas:
+  names:
+    - Demand Creation
+    - Sales
+    - Logistics
+    - Operations
+    - Finance
+    - HR
+    - IT
+    - Legal
+    - Corporate
+    - Supply Chain
+    - Marketing
+    - Product
+    - Innovation
+    - Retail Operations
+    - Digital
+
+# ---------------------------------------------------------------------------
+# INDICATOR / FLAG FIELDS
+# ---------------------------------------------------------------------------
+indicators:
+  active_ind_values: [Y, N]
+  active_ind_weights: [95, 5]
+  yes_no_values: [Y, N]
+  yes_no_weights: [50, 50]
+  etm_ind_values: [0, 1]
+  etm_ind_weights: [80, 20]
+  record_type_codes: [0, 1, 2, 3]
+
+# ---------------------------------------------------------------------------
+# COPA ATTRIBUTION
+# ---------------------------------------------------------------------------
+copa:
+  responsive_business_models: [DTC, Wholesale, Digital, Marketplace]
+  demand_streams: [Running, Training, Basketball, Football, Lifestyle, Golf]
+  business_types: [B2C, B2B, B2B2C]
+  marketing_types: [Performance, Lifestyle, Sport, Culture]
+  gender_ages: [Mens, Womens, Kids, Young Adult]
+  product_lifecycles: [Launch, Core, Carryover, Closeout]
+  distribution_methods: [Ship-to-Store, Drop-Ship, Pick-Pack, Cross-Dock]
+
+# ---------------------------------------------------------------------------
+# AUDIT FIELDS
+# ---------------------------------------------------------------------------
+audit:
+  created_by_users:
+    - ETL_SERVICE
+    - BATCH_PROC
+    - SAP_LOAD
+    - MANUAL_ADJ
+    - SYSTEM
+  physical_sources:
+    - SAP_ECC
+    - SAP_S4
+    - SALESFORCE
+    - CUSTOM_APP
+    - MANUAL
+  physical_source_weights: [40, 30, 15, 10, 5]

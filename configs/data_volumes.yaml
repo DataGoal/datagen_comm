@@ -1,0 +1,139 @@
+# =============================================================================
+# DATA VOLUMES CONFIGURATION
+# =============================================================================
+# Controls how many rows are generated per table.
+# Fact table row counts drive dimension cardinality automatically.
+# Set general_ledger_fact.row_count to your desired target (e.g. 25_000_000_000)
+# =============================================================================
+
+generation:
+  # Output catalog / schema in Databricks Unity Catalog
+  catalog: development
+  schema: dev_pbi_perform_cf_poc
+  # Write mode: overwrite | append
+  write_mode: overwrite
+  # Output format: delta (recommended for Databricks)
+  output_format: delta
+  # Shuffle partitions – tune to cluster size
+  spark_shuffle_partitions: 800
+  # Rows per output file partition for large fact tables (tune to ~128MB/file)
+  rows_per_partition: 50_000_000
+
+# ---------------------------------------------------------------------------
+# FACT TABLES
+# ---------------------------------------------------------------------------
+fact_tables:
+
+  general_ledger_fact:
+    row_count: 25_000_000_000   # ← Change this to scale the entire pipeline
+    # Number of Spark partitions used during generation
+    generation_partitions: 2000
+    # Z-ORDER columns for Delta optimisation (applied post-write)
+    zorder_by: [fiscal_year_period_nbr, profit_center_id, gl_account_nbr]
+    partition_by: [fiscal_year_period_nbr]
+
+  CIS_fact:
+    # Sized relative to the GL fact table by a ratio
+    row_count_ratio: 0.002       # 2 % of GL fact → ~50 M rows at 25 B
+    generation_partitions: 100
+    zorder_by: [fiscal_year_period_nbr, profit_center_id]
+    partition_by: [fiscal_year_period_nbr]
+
+  consolidated_balance_sheet_fact:
+    row_count_ratio: 0.0004      # ~10 M rows at 25 B
+    generation_partitions: 50
+    zorder_by: [fiscal_year_period_nbr]
+    partition_by: [fiscal_year_period_nbr]
+
+# ---------------------------------------------------------------------------
+# DIMENSION TABLES
+# Cardinality drives FK fan-out in the fact table.
+# These sizes are realistic for a large enterprise financial dataset.
+# ---------------------------------------------------------------------------
+dimension_tables:
+
+  accounting_document_type:
+    row_count: 40
+
+  calendar_fiscal_period_v:
+    # One row per fiscal period.  fiscal_years × 13 periods/year
+    fiscal_years: [2019, 2020, 2021, 2022, 2023, 2024, 2025]
+    # row_count auto-derived: len(fiscal_years) × 13
+
+  company_code:
+    row_count: 80
+
+  version_forecast_mapping:
+    row_count: 25
+
+  functional_area:
+    row_count: 150
+
+  profit_center:
+    row_count: 2_000
+
+  division_text:
+    row_count: 30
+
+  division_text_dim_v:
+    row_count: 30            # mirrors division_text
+
+  finance_product_dim_v:
+    row_count: 500_000
+
+  finance_customer_dim_v:
+    row_count: 120_000
+
+  copa_attribution_dim:
+    row_count: 800
+
+  cost_center_dim_v:
+    row_count: 15_000
+
+  geo_wholesale_value_business_dim:
+    row_count: 500
+
+  geo_marketplace_channel_dim:
+    row_count: 200
+
+  gl_account_dim:
+    row_count: 8_000
+
+  gl_account_zfsm_measures_hierarchy_dim:
+    row_count: 3_000
+
+  gl_account_hierarchy:
+    row_count: 25_000
+
+  management_gl_account_hierarchy:
+    row_count: 25_000
+
+  consolidation_functional_area_hierarchy:
+    row_count: 600
+
+  consolidation_segment_hierarchy_dim:
+    row_count: 1_200
+
+  segment_cost_center_hierarchy_dim_v:
+    row_count: 15_000
+
+  segment_profit_center_hierarchy:
+    row_count: 2_000
+
+  DisChannel_cost_center_hierarchy_dim_v:
+    row_count: 10_000
+
+  DisChannel_profit_center_hierarchy:
+    row_count: 1_500
+
+  PartDisChannel_profit_center_hierarchy:
+    row_count: 1_500
+
+  finance_foreign_currency_exchange_rate:
+    row_count: 300
+
+  atscale_geo_security:
+    row_count: 20
+
+  retail_global_store_profile_v:
+    row_count: 10_000
