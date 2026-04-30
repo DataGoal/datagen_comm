@@ -15,6 +15,10 @@
 
 # COMMAND ----------
 
+%pip install pyyaml
+
+# COMMAND ----------
+
 # ── 0. Bootstrap: add repo root to sys.path ──────────────────────────────────
 import sys, os
 

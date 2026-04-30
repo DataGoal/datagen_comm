@@ -1141,23 +1141,23 @@ def gen_retail_global_store_profile_v(spark: SparkSession, ctx: GenerationContex
         .withColumn("space_uom",    F.lit("SQF"))
         .withColumn("space_uom_cd", F.lit("SQF"))
         .withColumn("region_cd",    F.col("geography_region_name"))
-        # Null-fill remaining string columns
-        *[F.lit(None).cast(StringType()).alias(c) for c in [
-            "address_match_type_name", "application_reason_desc",
-            "china_store_sub_channel_cd", "china_store_sub_channel_desc",
-            "connect_global_store_key_cd", "customer_city_local_name",
-            "customer_id", "customer_local_province_state_name",
-            "customer_nbr", "customer_ship_to_name",
-            "dma_cd", "dma_desc", "fixture_type_name", "fixture_program_name",
-            "greater_china_sub_territory_name", "id",
-            "global_key_city_name", "landlord",
-        ]]
         .withColumn("change_dt",          F.lit(None).cast(StringType()))
         .withColumn("change_timestamp",   F.lit(datetime.date.today()))
         .withColumn("create_dt",          F.lit("2015-01-01"))
         .withColumn("stream_change_timestamp", F.lit(None).cast(StringType()))
         .drop("_store_row_id")
     )
+    for _col in [
+        "address_match_type_name", "application_reason_desc",
+        "china_store_sub_channel_cd", "china_store_sub_channel_desc",
+        "connect_global_store_key_cd", "customer_city_local_name",
+        "customer_id", "customer_local_province_state_name",
+        "customer_nbr", "customer_ship_to_name",
+        "dma_cd", "dma_desc", "fixture_type_name", "fixture_program_name",
+        "greater_china_sub_territory_name", "id",
+        "global_key_city_name", "landlord",
+    ]:
+        df = df.withColumn(_col, F.lit(None).cast(StringType()))
     # Integer columns missing from initial chain
     for _col in ["building_floor_nbr", "original_pos_id", "pos_retailer_location_id",
                  "store_city_tier_nbr", "total_stories", "store_score"]:

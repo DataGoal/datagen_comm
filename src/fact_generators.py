@@ -274,9 +274,9 @@ def gen_CIS_fact(spark: SparkSession, ctx: GenerationContext) -> DataFrame:
         # Amounts
         .withColumn("_base",
             log_normal_amt(d["amounts"]["revenue"]["mean"], d["amounts"]["revenue"]["std_dev"], 5))
-        .withColumn("transaction_currency_amt",    sign_adjusted(F.col("_base"), neg_p))
-        .withColumn("group_currency_amt",          sign_adjusted(F.round(F.col("_base") * F.lit(0.92), 5), neg_p))
-        .withColumn("local_currency_amt",          sign_adjusted(F.round(F.col("_base") * F.lit(0.95), 5), neg_p))
+        .withColumn("transaction_currency_amt",    sign_adjusted(F.col("_base"), neg_p).cast(DecimalType(18, 5)))
+        .withColumn("group_currency_amt",          sign_adjusted(F.round(F.col("_base") * F.lit(0.92), 5), neg_p).cast(DecimalType(18, 5)))
+        .withColumn("local_currency_amt",          sign_adjusted(F.round(F.col("_base") * F.lit(0.95), 5), neg_p).cast(DecimalType(18, 5)))
         .withColumn("sign_adjusted_group_currency_amt",       F.col("group_currency_amt"))
         .withColumn("sign_adjusted_local_currency_amt",       F.col("local_currency_amt"))
         .withColumn("sign_adjusted_transaction_currency_amt", F.col("transaction_currency_amt"))
@@ -407,9 +407,9 @@ def gen_consolidated_balance_sheet_fact(spark: SparkSession, ctx: GenerationCont
         # Amounts
         .withColumn("_base",
             log_normal_amt(d["amounts"]["revenue"]["mean"], d["amounts"]["revenue"]["std_dev"], 5))
-        .withColumn("transaction_currency_amt", sign_adjusted(F.col("_base"), neg_p))
-        .withColumn("local_currency_amt",       sign_adjusted(F.round(F.col("_base") * F.lit(0.95), 5), neg_p))
-        .withColumn("group_currency_amt",       sign_adjusted(F.round(F.col("_base") * F.lit(0.92), 5), neg_p))
+        .withColumn("transaction_currency_amt", sign_adjusted(F.col("_base"), neg_p).cast(DecimalType(18, 5)))
+        .withColumn("local_currency_amt",       sign_adjusted(F.round(F.col("_base") * F.lit(0.95), 5), neg_p).cast(DecimalType(18, 5)))
+        .withColumn("group_currency_amt",       sign_adjusted(F.round(F.col("_base") * F.lit(0.92), 5), neg_p).cast(DecimalType(18, 5)))
         .withColumn("ending_balance_amt",       F.col("group_currency_amt"))
         .withColumn("qty",                      F.round(F.rand() * F.lit(10000), 5).cast(DecimalType(18, 5)))
         .drop("_base")
