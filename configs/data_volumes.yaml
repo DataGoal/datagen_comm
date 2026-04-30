@@ -37,6 +37,7 @@ fact_tables:
     row_count_ratio: 0.002       # 2 % of GL fact → ~50 M rows at 25 B
     generation_partitions: 100
     zorder_by: [fiscal_year_period_nbr, profit_center_id]
+    partition_by: [fiscal_year_period_nbr]
 
   consolidated_balance_sheet_fact:
     row_count_ratio: 0.0004      # ~10 M rows at 25 B
