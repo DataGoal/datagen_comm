@@ -756,14 +756,12 @@ def gen_gl_account_zfsm_measures_hierarchy_dim(spark: SparkSession, ctx: Generat
         .withColumn("gl_account_level_2_nm", F.concat(F.lit("Level 2 - "), F.col("gl_account_level_2_cd")))
         .withColumn("gl_account_level_3_cd", F.concat(F.lit("L3_"), (F.col("zfsm_measure_id") % 30 + 1).cast(StringType())))
         .withColumn("gl_account_level_3_nm", F.concat(F.lit("Level 3 - "), F.col("gl_account_level_3_cd")))
-        # Levels 4-13 follow the same pattern
-        *[col for level in range(4, 14) for col in [
-            F.lit(None).cast(StringType()).alias(f"gl_account_level_{level}_cd"),
-            F.lit(None).cast(StringType()).alias(f"gl_account_level_{level}_nm"),
-        ]]
         .withColumn("record_created_tmst_utc", F.lit(today))
         .withColumn("record_update_tmst_utc",  F.lit(today))
     )
+    for level in range(4, 14):
+        df = df.withColumn(f"gl_account_level_{level}_cd", F.lit(None).cast(StringType()))
+        df = df.withColumn(f"gl_account_level_{level}_nm", F.lit(None).cast(StringType()))
     return df
 
 
@@ -1158,6 +1156,53 @@ def gen_retail_global_store_profile_v(spark: SparkSession, ctx: GenerationContex
         .withColumn("stream_change_timestamp", F.lit(None).cast(StringType()))
         .drop("_store_row_id")
     )
+    # Integer columns missing from initial chain
+    for _col in ["building_floor_nbr", "original_pos_id", "pos_retailer_location_id",
+                 "store_city_tier_nbr", "total_stories", "store_score"]:
+        df = df.withColumn(_col, F.lit(None).cast(IntegerType()))
+    # String columns missing from initial chain
+    for _col in [
+        "global_store_channel_class_cd", "global_store_channel_class_desc",
+        "lease_expiration_dt", "lease_status_cd", "lease_status_desc",
+        "local_language_store_street_address1", "local_language_store_street_address2",
+        "location_name", "mall_grade", "ncx_concept",
+        "postal_cd", "province_state_name",
+        "real_estate_category_cd", "real_estate_category_desc",
+        "record_type", "retail_concept_actual_dt",
+        "retail_concept_size", "retail_concept_target_dt", "retail_concept_volume",
+        "ship_to_customer_nbr",
+        "store_close_dt", "store_closure_reason_desc",
+        "store_distribution_type_cd", "store_distribution_type_desc",
+        "store_district_name",
+        "store_environment_cd", "store_environment_desc",
+        "store_front_name_english", "store_front_name_local",
+        "store_hotspot_id", "store_hotspot_name_english",
+        "store_hotspot_name_local", "store_hotspot_tier_desc",
+        "store_last_open_dt", "store_last_renovation_dt",
+        "store_last_renovation_type_cd", "store_last_renovation_type_desc",
+        "store_lead_category_cd", "store_lead_category_name",
+        "store_name_local", "store_priority",
+        "store_street_address1", "store_street_address2",
+        "store_sub_type_cd", "store_sub_type_desc",
+        "telephone_nbr", "vendor_pos_key",
+        "store_short_name_english", "store_master_id",
+        "geography_abbrv", "store_district_cd",
+        "climate_cd", "climate_name",
+        "real_estate_type_cd", "real_estate_type_name",
+        "retail_sales_area_cd", "retail_sales_area_name",
+        "retail_sales_district_cd", "retail_sales_district_name",
+        "retail_sub_concept_cd", "retail_sub_concept_name",
+        "sales_organization_cd", "sales_organization_name",
+        "record_type_cd", "territory_cd",
+        "retail_sales_territory_cd", "retail_sales_territory_name",
+        "retail_store_district_cd", "retail_store_district_name",
+        "banner_division_text",
+        "marketplace_store_tier_cd", "marketplace_store_tier_name",
+        "partner_store_positioning_cd", "partner_store_positioning_name",
+        "geo_key_city_cd", "geo_key_city_name",
+        "key_trade_zone_cd", "key_trade_zone_name",
+    ]:
+        df = df.withColumn(_col, F.lit(None).cast(StringType()))
     return df
 
 
