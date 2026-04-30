@@ -16,6 +16,7 @@ Principles:
 from __future__ import annotations
 
 import datetime
+import decimal
 import math
 from typing import Any, List
 
@@ -606,9 +607,6 @@ def gen_cost_center_dim_v(spark: SparkSession, ctx: GenerationContext) -> DataFr
             F.lpad((F.col("cost_center_id") % 90000 + 10000).cast(StringType()), 5, "0"))
         .withColumn("begin_effective_dt", F.lit(datetime.date(2015, 1, 1)))
         .withColumn("end_effective_dt",   F.lit(datetime.date(2099, 12, 31)))
-        .withColumn("created_by_user_id", F.lit("ETL_SERVICE"))
-        .withColumn("updated_by_user_id", F.lit("ETL_SERVICE"))
-        .withColumn("physical_source_cd", F.lit("SAP_ECC"))
         .withColumn("_cost_center_cleansed_latest_load_timestamp", F.lit(datetime.date.today()))
         # Nullable / rarely used fields set to None
         .withColumn("cost_center_report_printer_destination_cd", F.lit(None).cast(StringType()))
@@ -1050,11 +1048,11 @@ def gen_finance_foreign_currency_exchange_rate(spark: SparkSession, ctx: Generat
         for rt_cd, rt_nm in rate_types:
             for to_cur in ["USD", "EUR"]:
                 if from_cur == to_cur:
-                    rate = 1.0
+                    rate = decimal.Decimal("1.0")
                 else:
                     from_usd = rates.get(from_cur, 1.0)
                     to_usd   = rates.get(to_cur,   1.0)
-                    rate     = round(to_usd / from_usd, 8)
+                    rate     = decimal.Decimal(str(round(to_usd / from_usd, 8)))
                 rows.append((pk, from_cur, rt_cd, rt_nm, rate, from_cur, to_cur, to_cur, "Y"))
                 pk += 1
                 if pk > get_dim_row_count("finance_foreign_currency_exchange_rate"):

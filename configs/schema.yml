@@ -1,0 +1,2198 @@
+version: 2
+catalog: development
+schema: dev_pbi_perform_cf_poc
+
+tables:
+
+  - name: accounting_document_type
+    columns:
+      - name: accounting_document_type_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: accounting_document_type_cd
+        data_type: string
+      - name: accounting_document_type_nm
+        data_type: string
+      - name: active_ind
+        data_type: string
+      - name: language_cd
+        data_type: string
+      - name: accounting_document_type_cd_nm
+        data_type: string
+
+  - name: atscale_geo_security
+    columns:
+      - name: region
+        data_type: varchar(255)
+        constraints: [primary_key, not_null]
+      - name: role
+        data_type: string
+
+  - name: calendar_fiscal_period_v
+    columns:
+      - name: fiscal_year_period_nbr
+        data_type: int
+        constraints: [primary_key, not_null]
+      - name: month_long_nm
+        data_type: string
+      - name: month_short_nm
+        data_type: string
+      - name: month_nbr
+        data_type: int
+      - name: year_mth
+        data_type: int
+      - name: month_relevance_dt
+        data_type: date
+      - name: month_start_dt
+        data_type: date
+      - name: month_end_dt
+        data_type: date
+      - name: month_sort_sequence_nbr
+        data_type: int
+      - name: fiscal_period_nbr
+        data_type: int
+      - name: fiscal_period_cd
+        data_type: string
+      - name: fiscal_period_sort_sequence_nbr
+        data_type: int
+      - name: fiscal_year_period_cd
+        data_type: string
+      - name: fiscal_year_period_nm
+        data_type: string
+      - name: season_period_cd
+        data_type: string
+      - name: season_alternate_period_cd
+        data_type: string
+      - name: season_nm
+        data_type: string
+      - name: season_relevance_dt
+        data_type: date
+      - name: season_start_dt
+        data_type: date
+      - name: season_end_dt
+        data_type: date
+      - name: season_sort_sequence_nbr
+        data_type: int
+      - name: quarter_calendar_nbr
+        data_type: int
+      - name: quarter_calendar_sequence_nbr
+        data_type: int
+      - name: quarter_business_nbr
+        data_type: int
+      - name: fiscal_quarter_nbr
+        data_type: int
+      - name: fiscal_quarter_cd
+        data_type: string
+      - name: fiscal_quarter_sort_sequence_nbr
+        data_type: int
+      - name: fiscal_year_quarter_nbr
+        data_type: int
+      - name: fiscal_year_quarter_cd
+        data_type: string
+      - name: fiscal_year_quarter_alternate_cd
+        data_type: string
+      - name: year_cd
+        data_type: string
+      - name: year_nm
+        data_type: string
+      - name: year_nbr
+        data_type: string
+      - name: year_start_dt
+        data_type: date
+      - name: year_end_dt
+        data_type: date
+      - name: business_year_nbr
+        data_type: int
+      - name: fiscal_year_nbr
+        data_type: int
+      - name: fiscal_year_cd
+        data_type: string
+      - name: fiscal_period_sort
+        data_type: int
+
+  - name: CIS_fact
+    columns:
+      - name: gl_account_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: profit_center_nbr
+        data_type: string
+      - name: fiscal_year_period_nbr
+        data_type: int
+      - name: fiscal_yr
+        data_type: int
+      - name: transaction_currency_amt
+        data_type: decimal(18,5)
+      - name: functional_area_cd
+        data_type: string
+      - name: profit_center_id
+        data_type: bigint
+      - name: division_nbr
+        data_type: string
+      - name: segment_nbr
+        data_type: int
+      - name: partner_segment_nbr
+        data_type: int
+      - name: document_type_cd
+        data_type: string
+      - name: original_company_cd
+        data_type: int
+      - name: sign_adjusted_group_currency_amt
+        data_type: decimal(18,5)
+      - name: sign_adjusted_local_currency_amt
+        data_type: decimal(18,5)
+      - name: sign_adjusted_transaction_currency_amt
+        data_type: decimal(18,5)
+      - name: group_currency_amt
+        data_type: decimal(18,5)
+      - name: local_currency_amt
+        data_type: decimal(18,5)
+      - name: qty
+        data_type: decimal(18,5)
+      - name: consolidated_income_statement_fact_id
+        data_type: bigint
+      - name: financial_statement_item_cd
+        data_type: string
+      - name: local_currency_cd
+        data_type: string
+      - name: transaction_currency_cd
+        data_type: string
+      - name: version_nbr
+        data_type: string
+      - name: partner_profit_center_nbr
+        data_type: string
+      - name: partner_unit_cd
+        data_type: string
+      - name: consolidation_unit_cd
+        data_type: int
+      - name: ledger_cd
+        data_type: string
+      - name: dimension_cd
+        data_type: string
+      - name: record_type_cd
+        data_type: string
+      - name: consolidation_group_cd
+        data_type: string
+      - name: consolidation_of_investment_activity_nbr
+        data_type: int
+      - name: chart_of_accounts_cd
+        data_type: string
+      - name: trading_partner_nbr
+        data_type: int
+      - name: region_summary_product_group_cd
+        data_type: string
+      - name: version_group_nm
+        data_type: string
+      - name: consolidated_segment_nm
+        data_type: string
+      - name: sign_adjusted_qty
+        data_type: decimal(18,5)
+      - name: user_nm
+        data_type: string
+      - name: additional_operation_information_nm
+        data_type: string
+      - name: created_by_user_id
+        data_type: string
+      - name: updated_by_user_id
+        data_type: string
+      - name: physical_source_cd
+        data_type: string
+      - name: cis_store_cd
+        data_type: string
+      - name: posting_level_cd
+        data_type: string
+      - name: base_unit_of_measure_cd
+        data_type: string
+      - name: foreign_exchange_type_cd
+        data_type: string
+      - name: consolidated_channel_nm
+        data_type: string
+
+  - name: company_code
+    columns:
+      - name: company_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: company_cd
+        data_type: string
+      - name: company_nm
+        data_type: string
+      - name: currency_cd
+        data_type: string
+      - name: created_by_user_id
+        data_type: string
+      - name: updated_by_user_id
+        data_type: string
+      - name: physical_source_cd
+        data_type: string
+
+  - name: consolidated_balance_sheet_fact
+    columns:
+      - name: consolidated_balance_sheet_fact_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: financial_statement_item_cd
+        data_type: string
+      - name: profit_center_nbr
+        data_type: string
+      - name: functional_area_cd
+        data_type: string
+      - name: local_currency_cd
+        data_type: string
+      - name: transaction_currency_cd
+        data_type: string
+      - name: version_nbr
+        data_type: string
+      - name: division_nbr
+        data_type: string
+      - name: fiscal_year_period_nbr
+        data_type: int
+      - name: partner_unit_cd
+        data_type: string
+      - name: posting_level_cd
+        data_type: string
+      - name: document_type_cd
+        data_type: string
+      - name: consolidation_unit_cd
+        data_type: int
+      - name: partner_profit_center_nbr
+        data_type: string
+      - name: trading_partner_nbr
+        data_type: int
+      - name: region_summary_product_group_cd
+        data_type: string
+      - name: transaction_currency_amt
+        data_type: decimal(18,5)
+      - name: local_currency_amt
+        data_type: decimal(18,5)
+      - name: group_currency_amt
+        data_type: decimal(18,5)
+      - name: partner_segment_nbr
+        data_type: int
+      - name: segment_nbr
+        data_type: string
+      - name: qty
+        data_type: decimal(18,5)
+      - name: consolidated_segment_nm
+        data_type: string
+      - name: consolidated_channel_nm
+        data_type: string
+      - name: fiscal_yr
+        data_type: int
+      - name: version_group_nm
+        data_type: string
+      - name: user_nm
+        data_type: string
+      - name: additional_operation_information_nm
+        data_type: string
+      - name: created_by_user_id
+        data_type: string
+      - name: updated_by_user_id
+        data_type: string
+      - name: physical_source_cd
+        data_type: string
+      - name: _acdocu_latest_load_timestamp
+        data_type: date
+      - name: group_currency_cd
+        data_type: string
+      - name: ending_balance_amt
+        data_type: decimal(18,5)
+      - name: foreign_exchange_type_cd
+        data_type: string
+
+  - name: consolidation_functional_area_hierarchy
+    columns:
+      - name: consolidation_functional_area_hierarchy_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: active_ind
+        data_type: string
+      - name: functional_area_cd
+        data_type: string
+      - name: consolidation_functional_area_hierarchy_parent_cd
+        data_type: string
+      - name: functional_area_level_nbr
+        data_type: int
+      - name: functional_area_type_nm
+        data_type: string
+      - name: consolidation_functional_area_hierarchy_cd
+        data_type: string
+      - name: consolidation_functional_area_hierarchy_desc
+        data_type: string
+      - name: consolidation_functional_area_1_cd
+        data_type: string
+      - name: consolidation_functional_area_1_nm
+        data_type: string
+      - name: consolidation_functional_area_2_cd
+        data_type: string
+      - name: consolidation_functional_area_2_nm
+        data_type: string
+      - name: consolidation_functional_area_3_cd
+        data_type: string
+      - name: consolidation_functional_area_3_nm
+        data_type: string
+      - name: consolidation_functional_area_4_cd
+        data_type: string
+      - name: consolidation_functional_area_4_nm
+        data_type: string
+      - name: consolidation_functional_area_5_cd
+        data_type: string
+      - name: consolidation_functional_area_5_nm
+        data_type: string
+      - name: consolidation_functional_area_6_cd
+        data_type: string
+      - name: consolidation_functional_area_6_nm
+        data_type: string
+      - name: consolidation_functional_area_7_cd
+        data_type: string
+      - name: consolidation_functional_area_7_nm
+        data_type: string
+      - name: created_by_user_id
+        data_type: string
+      - name: updated_by_user_id
+        data_type: string
+      - name: physical_source_cd
+        data_type: string
+      - name: record_created_tmst_utc
+        data_type: date
+      - name: record_update_tmst_utc
+        data_type: date
+      - name: _consolidation_functional_area_hierarchy_raw_latest_load_tmst
+        data_type: date
+
+  - name: consolidation_segment_hierarchy_dim
+    columns:
+      - name: consolidation_segment_hierarchy_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: segment_nbr
+        data_type: int
+      - name: segment_desc
+        data_type: string
+      - name: consolidation_segment_hierarchy_parent_cd
+        data_type: string
+      - name: segment_type_nm
+        data_type: string
+      - name: segment_level_nbr
+        data_type: int
+      - name: consolidation_segment_hierarchy_cd
+        data_type: string
+      - name: consolidation_segment_hierarchy_desc
+        data_type: string
+      - name: consolidation_segment_hierarchy_cd_desc
+        data_type: string
+      - name: consolidation_segment_1_cd
+        data_type: string
+      - name: consolidation_segment_1_nm
+        data_type: string
+      - name: consolidation_segment_1_cd_nm
+        data_type: string
+      - name: consolidation_segment_2_cd
+        data_type: string
+      - name: consolidation_segment_2_nm
+        data_type: string
+      - name: consolidation_segment_2_cd_nm
+        data_type: string
+      - name: consolidation_segment_3_cd
+        data_type: string
+      - name: consolidation_segment_3_nm
+        data_type: string
+      - name: consolidation_segment_3_cd_nm
+        data_type: string
+      - name: consolidation_segment_4_cd
+        data_type: string
+      - name: consolidation_segment_4_nm
+        data_type: string
+      - name: consolidation_segment_4_cd_nm
+        data_type: string
+      - name: consolidation_segment_5_cd
+        data_type: string
+      - name: consolidation_segment_5_nm
+        data_type: string
+      - name: consolidation_segment_5_cd_nm
+        data_type: string
+      - name: consolidation_segment_6_cd
+        data_type: string
+      - name: consolidation_segment_6_nm
+        data_type: string
+      - name: consolidation_segment_6_cd_nm
+        data_type: string
+      - name: consolidation_segment_7_cd
+        data_type: string
+      - name: consolidation_segment_7_nm
+        data_type: string
+      - name: consolidation_segment_7_cd_nm
+        data_type: string
+      - name: consolidation_segment_8_cd
+        data_type: string
+      - name: consolidation_segment_8_nm
+        data_type: string
+      - name: consolidation_segment_8_cd_nm
+        data_type: string
+      - name: consolidation_segment_9_cd
+        data_type: string
+      - name: consolidation_segment_9_nm
+        data_type: string
+      - name: consolidation_segment_9_cd_nm
+        data_type: string
+      - name: consolidation_segment_10_cd
+        data_type: string
+      - name: consolidation_segment_10_nm
+        data_type: string
+      - name: consolidation_segment_10_cd_nm
+        data_type: string
+      - name: created_by_user_id
+        data_type: string
+      - name: updated_by_user_id
+        data_type: string
+      - name: physical_source_cd
+        data_type: string
+      - name: active_ind
+        data_type: string
+
+  - name: segment_cost_center_hierarchy_dim_v
+    columns:
+      - name: cost_center_hierarchy_hist_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: cost_center_nbr
+        data_type: string
+      - name: cost_center_hierarchy_nm
+        data_type: string
+      - name: cost_center_level_1_cd
+        data_type: string
+      - name: cost_center_level_1_nm
+        data_type: string
+      - name: cost_center_level_2_cd
+        data_type: string
+      - name: cost_center_level_2_nm
+        data_type: string
+      - name: cost_center_level_3_cd
+        data_type: string
+      - name: cost_center_level_3_nm
+        data_type: string
+      - name: cost_center_level_4_cd
+        data_type: string
+      - name: cost_center_level_4_nm
+        data_type: string
+      - name: cost_center_level_5_cd
+        data_type: string
+      - name: cost_center_level_5_nm
+        data_type: string
+      - name: cost_center_level_6_cd
+        data_type: string
+      - name: cost_center_level_6_nm
+        data_type: string
+      - name: cost_center_level_7_cd
+        data_type: string
+      - name: cost_center_level_7_nm
+        data_type: string
+      - name: cost_center_level_8_cd
+        data_type: string
+      - name: cost_center_level_8_nm
+        data_type: string
+      - name: cost_center_level_9_cd
+        data_type: string
+      - name: cost_center_level_9_nm
+        data_type: string
+      - name: cost_center_level_10_cd
+        data_type: string
+      - name: cost_center_level_10_nm
+        data_type: string
+      - name: cost_center_level_11_cd
+        data_type: string
+      - name: cost_center_level_11_nm
+        data_type: string
+      - name: cost_center_level_12_cd
+        data_type: string
+      - name: cost_center_level_12_nm
+        data_type: string
+      - name: cost_center_level_13_cd
+        data_type: string
+      - name: cost_center_level_13_nm
+        data_type: string
+      - name: cost_center_level_14_cd
+        data_type: string
+      - name: cost_center_level_14_nm
+        data_type: string
+      - name: cost_center_level_15_cd
+        data_type: string
+      - name: cost_center_level_15_nm
+        data_type: string
+      - name: cost_center_level_16_cd
+        data_type: string
+      - name: cost_center_level_16_nm
+        data_type: string
+      - name: cost_center_level_17_cd
+        data_type: string
+      - name: cost_center_level_17_nm
+        data_type: string
+      - name: cost_center_level_18_cd
+        data_type: string
+      - name: cost_center_level_18_nm
+        data_type: string
+      - name: cost_center_level_19_cd
+        data_type: string
+      - name: cost_center_level_19_nm
+        data_type: string
+      - name: cost_center_level_20_cd
+        data_type: string
+      - name: cost_center_level_20_nm
+        data_type: string
+      - name: cost_center_level_21_cd
+        data_type: string
+      - name: cost_center_level_21_nm
+        data_type: string
+      - name: cost_center_level_22_cd
+        data_type: string
+      - name: cost_center_level_22_nm
+        data_type: string
+      - name: cost_center_level_23_cd
+        data_type: string
+      - name: cost_center_level_23_nm
+        data_type: string
+      - name: cost_center_level_24_cd
+        data_type: string
+      - name: cost_center_level_24_nm
+        data_type: string
+      - name: cost_center_level_25_cd
+        data_type: string
+      - name: cost_center_level_25_nm
+        data_type: string
+      - name: cost_center_level_26_cd
+        data_type: string
+      - name: cost_center_level_26_nm
+        data_type: string
+      - name: cost_center_level_27_cd
+        data_type: string
+      - name: cost_center_level_27_nm
+        data_type: string
+      - name: cost_center_level_28_cd
+        data_type: string
+      - name: cost_center_level_28_nm
+        data_type: string
+      - name: cost_center_level_29_cd
+        data_type: string
+      - name: cost_center_level_29_nm
+        data_type: string
+      - name: cost_center_level_30_cd
+        data_type: string
+      - name: cost_center_level_30_nm
+        data_type: string
+      - name: controlling_area_cd
+        data_type: string
+
+  - name: segment_profit_center_hierarchy
+    columns:
+      - name: segment_profit_center_nbr
+        data_type: varchar(255)
+        constraints: [primary_key, not_null]
+      - name: profit_center_hierarchy_nm
+        data_type: string
+      - name: profit_center_level_1_cd
+        data_type: string
+      - name: profit_center_level_1_nm
+        data_type: string
+      - name: profit_center_level_2_cd
+        data_type: string
+      - name: profit_center_level_2_nm
+        data_type: string
+      - name: profit_center_level_3_cd
+        data_type: string
+      - name: profit_center_level_3_nm
+        data_type: string
+      - name: profit_center_level_4_cd
+        data_type: string
+      - name: profit_center_level_4_nm
+        data_type: string
+      - name: profit_center_level_5_cd
+        data_type: string
+      - name: profit_center_level_5_nm
+        data_type: string
+      - name: profit_center_level_6_cd
+        data_type: string
+      - name: profit_center_level_6_nm
+        data_type: string
+      - name: profit_center_level_7_cd
+        data_type: string
+      - name: profit_center_level_7_nm
+        data_type: string
+      - name: profit_center_level_8_cd
+        data_type: string
+      - name: profit_center_level_8_nm
+        data_type: string
+      - name: profit_center_level_9_cd
+        data_type: string
+      - name: profit_center_level_9_nm
+        data_type: string
+
+  - name: version_forecast_mapping
+    columns:
+      - name: version_forecast_mapping_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: version_nbr
+        data_type: string
+      - name: version_group_nm
+        data_type: string
+      - name: active_ind
+        data_type: string
+
+  - name: copa_attribution_dim
+    columns:
+      - name: copa_attribution_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: responsive_business_model_cd
+        data_type: string
+      - name: responsive_business_model_desc
+        data_type: string
+      - name: demand_stream_cd
+        data_type: string
+      - name: demand_stream_desc
+        data_type: string
+      - name: business_type_cd
+        data_type: string
+      - name: business_type_desc
+        data_type: string
+      - name: marketing_type_cd
+        data_type: string
+      - name: marketing_type_desc
+        data_type: string
+      - name: gender_age_cd
+        data_type: string
+      - name: gender_age_desc
+        data_type: string
+      - name: direct_business_model_cd
+        data_type: string
+      - name: direct_business_model_desc
+        data_type: string
+      - name: product_lifecycle_cd
+        data_type: string
+      - name: product_lifecycle_desc
+        data_type: string
+      - name: quality_cd
+        data_type: string
+      - name: quality_desc
+        data_type: string
+      - name: region_summary_product_group_cd
+        data_type: string
+      - name: region_summary_product_group_desc
+        data_type: string
+      - name: sales_order_reason_desc
+        data_type: string
+      - name: sales_order_type_cd
+        data_type: string
+      - name: sales_order_type_desc
+        data_type: string
+      - name: sales_order_type_group_desc
+        data_type: string
+      - name: sales_order_item_category_cd
+        data_type: string
+      - name: sales_order_item_category_desc
+        data_type: string
+      - name: distribution_method_cd
+        data_type: string
+      - name: distribution_method_desc
+        data_type: string
+      - name: sales_order_reason_cd
+        data_type: string
+
+  - name: cost_center_dim_v
+    columns:
+      - name: cost_center_nbr
+        data_type: varchar(255)
+        constraints: [primary_key, not_null]
+      - name: controlling_area_cd
+        data_type: string
+      - name: valid_to_dt
+        data_type: date
+      - name: valid_from_dt
+        data_type: date
+      - name: iso_language_cd
+        data_type: string
+      - name: cost_center_nm
+        data_type: string
+      - name: cost_center_desc
+        data_type: string
+      - name: cost_center_category_hierarchy_1_cd
+        data_type: string
+      - name: cost_center_category_hierarchy_2_cd
+        data_type: string
+      - name: company_cd
+        data_type: string
+      - name: source_system
+        data_type: string
+      - name: cost_center_type_cd
+        data_type: string
+      - name: cost_center_category_short_desc
+        data_type: string
+      - name: business_area_cd
+        data_type: string
+      - name: tax_jurisdiction_cd
+        data_type: string
+      - name: functional_area_cd
+        data_type: string
+      - name: currency_cd
+        data_type: string
+      - name: posting_allowed_ind
+        data_type: string
+      - name: planning_allowed_ind
+        data_type: string
+      - name: secondary_costs_posting_allowed_ind
+        data_type: string
+      - name: revenue_posting_allowed_ind
+        data_type: string
+      - name: commitment_update_allowed_ind
+        data_type: string
+      - name: secondary_costs_planning_allowed_ind
+        data_type: string
+      - name: revenue_planning_allowed_ind
+        data_type: string
+      - name: quantity_required_ind
+        data_type: string
+      - name: department_nm
+        data_type: string
+      - name: cost_center_report_printer_destination_cd
+        data_type: string
+      - name: company_legal_entity_id
+        data_type: string
+      - name: profit_center_nbr
+        data_type: string
+      - name: responsible_user_nm
+        data_type: string
+      - name: responsible_user_id
+        data_type: string
+      - name: responsible_user_title
+        data_type: string
+      - name: line_1_nm
+        data_type: string
+      - name: line_2_nm
+        data_type: string
+      - name: line_3_nm
+        data_type: string
+      - name: line_4_nm
+        data_type: string
+      - name: country_cd
+        data_type: string
+      - name: region_cd
+        data_type: string
+      - name: city_nm
+        data_type: string
+      - name: district_nm
+        data_type: string
+      - name: postal_cd
+        data_type: string
+      - name: street_address_txt
+        data_type: string
+      - name: po_box_postal_cd
+        data_type: string
+      - name: po_box_nbr
+        data_type: string
+      - name: correspondence_language_cd
+        data_type: string
+      - name: first_telephone_nbr
+        data_type: string
+      - name: second_telephone_nbr
+        data_type: string
+      - name: telebox_nbr
+        data_type: string
+      - name: fax_nbr
+        data_type: string
+      - name: teletex_nbr
+        data_type: string
+      - name: telex_nbr
+        data_type: string
+      - name: data_communication_line_nbr
+        data_type: string
+      - name: msg_header_tmst
+        data_type: date
+      - name: begin_effective_dt
+        data_type: date
+      - name: end_effective_dt
+        data_type: date
+      - name: cost_center_id
+        data_type: bigint
+      - name: _cost_center_cleansed_latest_load_timestamp
+        data_type: date
+
+  - name: DisChannel_cost_center_hierarchy_dim_v
+    columns:
+      - name: cost_center_hierarchy_hist_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: cost_center_nbr
+        data_type: string
+      - name: cost_center_hierarchy_nm
+        data_type: string
+      - name: cost_center_level_1_cd
+        data_type: string
+      - name: cost_center_level_1_nm
+        data_type: string
+      - name: cost_center_level_2_cd
+        data_type: string
+      - name: cost_center_level_2_nm
+        data_type: string
+      - name: cost_center_level_3_cd
+        data_type: string
+      - name: cost_center_level_3_nm
+        data_type: string
+      - name: cost_center_level_4_cd
+        data_type: string
+      - name: cost_center_level_4_nm
+        data_type: string
+      - name: cost_center_level_5_cd
+        data_type: string
+      - name: cost_center_level_5_nm
+        data_type: string
+      - name: cost_center_level_6_cd
+        data_type: string
+      - name: cost_center_level_6_nm
+        data_type: string
+      - name: cost_center_level_7_cd
+        data_type: string
+      - name: cost_center_level_7_nm
+        data_type: string
+      - name: cost_center_level_8_cd
+        data_type: string
+      - name: cost_center_level_8_nm
+        data_type: string
+      - name: cost_center_level_9_cd
+        data_type: string
+      - name: cost_center_level_9_nm
+        data_type: string
+      - name: cost_center_level_10_cd
+        data_type: string
+      - name: cost_center_level_10_nm
+        data_type: string
+      - name: cost_center_level_11_cd
+        data_type: string
+      - name: cost_center_level_11_nm
+        data_type: string
+      - name: cost_center_level_12_cd
+        data_type: string
+      - name: cost_center_level_12_nm
+        data_type: string
+      - name: cost_center_level_13_cd
+        data_type: string
+      - name: cost_center_level_13_nm
+        data_type: string
+      - name: cost_center_level_14_cd
+        data_type: string
+      - name: cost_center_level_14_nm
+        data_type: string
+      - name: cost_center_level_15_cd
+        data_type: string
+      - name: cost_center_level_15_nm
+        data_type: string
+      - name: cost_center_level_16_cd
+        data_type: string
+      - name: cost_center_level_16_nm
+        data_type: string
+      - name: cost_center_level_17_cd
+        data_type: string
+      - name: cost_center_level_17_nm
+        data_type: string
+      - name: cost_center_level_18_cd
+        data_type: string
+      - name: cost_center_level_18_nm
+        data_type: string
+      - name: cost_center_level_19_cd
+        data_type: string
+      - name: cost_center_level_19_nm
+        data_type: string
+      - name: cost_center_level_20_cd
+        data_type: string
+      - name: cost_center_level_20_nm
+        data_type: string
+      - name: cost_center_level_21_cd
+        data_type: string
+      - name: cost_center_level_21_nm
+        data_type: string
+      - name: cost_center_level_22_cd
+        data_type: string
+      - name: cost_center_level_22_nm
+        data_type: string
+      - name: cost_center_level_23_cd
+        data_type: string
+      - name: cost_center_level_23_nm
+        data_type: string
+      - name: cost_center_level_24_cd
+        data_type: string
+      - name: cost_center_level_24_nm
+        data_type: string
+      - name: cost_center_level_25_cd
+        data_type: string
+      - name: cost_center_level_25_nm
+        data_type: string
+      - name: cost_center_level_26_cd
+        data_type: string
+      - name: cost_center_level_26_nm
+        data_type: string
+      - name: cost_center_level_27_cd
+        data_type: string
+      - name: cost_center_level_27_nm
+        data_type: string
+      - name: cost_center_level_28_cd
+        data_type: string
+      - name: cost_center_level_28_nm
+        data_type: string
+      - name: cost_center_level_29_cd
+        data_type: string
+      - name: cost_center_level_29_nm
+        data_type: string
+      - name: cost_center_level_30_cd
+        data_type: string
+      - name: cost_center_level_30_nm
+        data_type: string
+      - name: controlling_area_cd
+        data_type: string
+
+  - name: DisChannel_profit_center_hierarchy
+    columns:
+      - name: profit_center_hierarchy_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: distrchnl_profit_center_nbr
+        data_type: string
+      - name: controlling_area_cd
+        data_type: string
+      - name: profit_center_hierarchy_nm
+        data_type: string
+      - name: profit_center_level_1_cd
+        data_type: string
+      - name: profit_center_level_1_nm
+        data_type: string
+      - name: profit_center_level_2_cd
+        data_type: string
+      - name: profit_center_level_2_nm
+        data_type: string
+      - name: profit_center_level_3_cd
+        data_type: string
+      - name: profit_center_level_3_nm
+        data_type: string
+      - name: profit_center_level_4_cd
+        data_type: string
+      - name: profit_center_level_4_nm
+        data_type: string
+      - name: profit_center_level_5_cd
+        data_type: string
+      - name: profit_center_level_5_nm
+        data_type: string
+      - name: profit_center_level_6_cd
+        data_type: string
+      - name: profit_center_level_6_nm
+        data_type: string
+      - name: profit_center_level_7_cd
+        data_type: string
+      - name: profit_center_level_7_nm
+        data_type: string
+      - name: profit_center_level_8_cd
+        data_type: string
+      - name: profit_center_level_8_nm
+        data_type: string
+      - name: profit_center_level_9_cd
+        data_type: string
+      - name: profit_center_level_9_nm
+        data_type: string
+
+  - name: division_text
+    columns:
+      - name: division_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: division_nbr
+        data_type: varchar(50)
+      - name: division_nm
+        data_type: string
+      - name: division_group
+        data_type: string
+      - name: last_row_ind
+        data_type: string
+      - name: common_data_service_view_nm
+        data_type: string
+      - name: source_system_nm
+        data_type: string
+      - name: raw_tmst
+        data_type: date
+      - name: record_created_tmst_utc
+        data_type: date
+      - name: record_update_tmst_utc
+        data_type: date
+      - name: created_by_user_id
+        data_type: string
+      - name: updated_by_user_id
+        data_type: string
+      - name: physical_source_cd
+        data_type: string
+      - name: language_cd
+        data_type: string
+      - name: active_ind
+        data_type: string
+
+  - name: division_text_dim_v
+    columns:
+      - name: division_nbr
+        data_type: varchar(50)
+        constraints: [primary_key, not_null]
+      - name: division_nm
+        data_type: string
+      - name: division_id
+        data_type: bigint
+      - name: division_group
+        data_type: string
+
+  - name: finance_customer_dim_v
+    columns:
+      - name: finance_customer_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: customer_nbr
+        data_type: string
+      - name: channel_desc
+        data_type: string
+      - name: customer_nm
+        data_type: string
+      - name: customer_owner_group_nm
+        data_type: string
+      - name: marketplace_channel_nm
+        data_type: string
+      - name: geo_marketplace_unit_nm
+        data_type: string
+      - name: integrated_business_planning_level_1_desc
+        data_type: string
+      - name: integrated_business_planning_level_2_desc
+        data_type: string
+      - name: integrated_business_planning_level_3_desc
+        data_type: string
+      - name: integrated_business_planning_mpu_desc
+        data_type: string
+      - name: sub_territory_nm
+        data_type: string
+      - name: customer_business_type_nm
+        data_type: string
+      - name: customer_subtype_nm
+        data_type: string
+      - name: partner_channel
+        data_type: string
+      - name: partner_sub_channel
+        data_type: string
+      - name: partner_account_classification
+        data_type: string
+
+  - name: finance_foreign_currency_exchange_rate
+    columns:
+      - name: finance_foreign_currency_exchange_rate_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: from_currency_cd
+        data_type: string
+      - name: exchange_rate_cd
+        data_type: string
+      - name: exchange_rate_nm
+        data_type: string
+      - name: exchange_rate
+        data_type: decimal(38,18)
+      - name: from_currency_nm
+        data_type: string
+      - name: to_currency_cd
+        data_type: string
+      - name: to_currency_nm
+        data_type: string
+      - name: active_ind
+        data_type: string
+
+  - name: finance_product_dim_v
+    columns:
+      - name: product_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: primary_platform_desc
+        data_type: string
+      - name: style_nm
+        data_type: string
+      - name: franchise_nm
+        data_type: string
+      - name: gender_desc
+        data_type: string
+      - name: global_category_core_focus_desc
+        data_type: string
+      - name: product_cd
+        data_type: string
+      - name: team_nm
+        data_type: string
+      - name: league_desc
+        data_type: string
+      - name: athlete_full_nm
+        data_type: string
+      - name: product_company_nm
+        data_type: string
+      - name: age_desc
+        data_type: string
+      - name: consumer_construct_dimension_nm
+        data_type: string
+      - name: fields_of_play_nm
+        data_type: string
+      - name: merchandising_classification_desc
+        data_type: string
+      - name: consumer_construct_segment_nm
+        data_type: string
+      - name: brand_nm
+        data_type: string
+      - name: sub_category_desc
+        data_type: string
+      - name: blank_usage_ind
+        data_type: string
+      - name: silhouette_desc
+        data_type: string
+      - name: silhouette_type_desc
+        data_type: string
+      - name: style_nbr
+        data_type: string
+      - name: consumer_construct_global_consumer_offense_nm
+        data_type: string
+      - name: active_ind
+        data_type: string
+      - name: created_by_user_id
+        data_type: string
+      - name: updated_by_user_id
+        data_type: string
+      - name: physical_source_cd
+        data_type: string
+      - name: global_sport_focus_derived_desc
+        data_type: string
+      - name: global_sport_focus_desc
+        data_type: string
+      - name: global_sport_sub_focus_desc
+        data_type: string
+      - name: sub_brand_desc
+        data_type: string
+      - name: sub_brand_cd
+        data_type: string
+
+  - name: functional_area
+    columns:
+      - name: functional_area_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: language_cd
+        data_type: string
+      - name: functional_area_cd
+        data_type: string
+      - name: functional_area_nm
+        data_type: string
+
+  - name: general_ledger_fact
+    description: >
+      Central fact table. Joins to all dimension tables via foreign key relationships
+      defined in the ALTER TABLE constraints.
+    columns:
+      - name: general_ledger_fact_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: fiscal_year_period_nbr
+        data_type: int
+      - name: profit_center_id
+        data_type: bigint
+      - name: division_id
+        data_type: bigint
+      - name: version_forecast_mapping_id
+        data_type: bigint
+      - name: functional_area_id
+        data_type: bigint
+      - name: accounting_document_type_id
+        data_type: bigint
+      - name: product_id
+        data_type: bigint
+      - name: customer_id
+        data_type: bigint
+      - name: company_id
+        data_type: bigint
+      - name: copa_attribution_id
+        data_type: bigint
+      - name: cost_center_nbr
+        data_type: string
+      - name: geo_wholesale_value_business_id
+        data_type: bigint
+      - name: geo_marketplace_channel_id
+        data_type: bigint
+      - name: gl_account_nbr
+        data_type: string
+      - name: zfsm_measure_id
+        data_type: bigint
+      - name: company_currency_amt
+        data_type: decimal(28,5)
+      - name: transaction_currency_amt
+        data_type: decimal(28,5)
+      - name: performance_management_currency_amt
+        data_type: decimal(28,5)
+      - name: etm_ind
+        data_type: int
+      - name: etm_foreign_currency_exchange_rate_id
+        data_type: bigint
+      - name: gaap_foreign_currency_exchange_rate_id
+        data_type: bigint
+      - name: sales_qty
+        data_type: decimal(28,5)
+      - name: returns_qty
+        data_type: decimal(28,5)
+      - name: general_ledger_fact_ind
+        data_type: string
+      - name: cis_delta_ind
+        data_type: string
+      - name: general_ledger_ocogs_allocation_fact_ind
+        data_type: string
+      - name: anaplan_corporate_ind
+        data_type: string
+      - name: company_currency_cd
+        data_type: string
+      - name: transaction_currency_cd
+        data_type: string
+    relationships:
+      - column: accounting_document_type_id
+        references:
+          table: accounting_document_type
+          column: accounting_document_type_id
+      - column: fiscal_year_period_nbr
+        references:
+          table: calendar_fiscal_period_v
+          column: fiscal_year_period_nbr
+      - column: profit_center_id
+        references:
+          table: profit_center
+          column: profit_center_id
+      - column: division_id
+        references:
+          table: division_text
+          column: division_id
+      - column: version_forecast_mapping_id
+        references:
+          table: version_forecast_mapping
+          column: version_forecast_mapping_id
+      - column: functional_area_id
+        references:
+          table: functional_area
+          column: functional_area_id
+      - column: product_id
+        references:
+          table: finance_product_dim_v
+          column: product_id
+      - column: customer_id
+        references:
+          table: finance_customer_dim_v
+          column: finance_customer_id
+      - column: company_id
+        references:
+          table: company_code
+          column: company_id
+      - column: copa_attribution_id
+        references:
+          table: copa_attribution_dim
+          column: copa_attribution_id
+      - column: cost_center_nbr
+        references:
+          table: cost_center_dim_v
+          column: cost_center_nbr
+      - column: geo_wholesale_value_business_id
+        references:
+          table: geo_wholesale_value_business_dim
+          column: geo_wholesale_value_business_id
+      - column: geo_marketplace_channel_id
+        references:
+          table: geo_marketplace_channel_dim
+          column: geo_marketplace_channel_id
+      - column: gl_account_nbr
+        references:
+          table: gl_account_dim
+          column: gl_account_nbr
+
+  - name: geo_marketplace_channel_dim
+    columns:
+      - name: geo_marketplace_channel_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: geo_marketplace_channel_nm
+        data_type: string
+      - name: created_by_user_id
+        data_type: string
+      - name: updated_by_user_id
+        data_type: string
+      - name: physical_source_cd
+        data_type: string
+      - name: active_ind
+        data_type: string
+
+  - name: geo_wholesale_value_business_dim
+    columns:
+      - name: geo_wholesale_value_business_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: geo_wholesale_value_business_desc
+        data_type: string
+      - name: created_by_user_id
+        data_type: string
+      - name: updated_by_user_id
+        data_type: string
+      - name: physical_source_cd
+        data_type: string
+
+  - name: gl_account_dim
+    columns:
+      - name: gl_account_nbr
+        data_type: varchar(255)
+        constraints: [primary_key, not_null]
+      - name: gl_account_short_desc
+        data_type: string
+      - name: gl_account_long_desc
+        data_type: string
+      - name: begin_effective_dt
+        data_type: date
+      - name: end_effective_dt
+        data_type: date
+      - name: active_ind
+        data_type: string
+      - name: gl_accnt_id
+        data_type: bigint
+      - name: cost_component_calc
+        data_type: string
+
+  - name: gl_account_hierarchy
+    columns:
+      - name: gl_account_hierarchy_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: gl_account_nbr
+        data_type: string
+      - name: hierarchy_chart_of_accounts_cd
+        data_type: string
+      - name: hierarchy_nm
+        data_type: string
+      - name: hierarchy_liabilty_cd
+        data_type: string
+      - name: hierarchy_net_loss_cd
+        data_type: string
+      - name: hierarchy_net_profit_cd
+        data_type: string
+      - name: hierarchy_profit_loss_cd
+        data_type: string
+      - name: hierarchy_not_assignable_asset_cd
+        data_type: string
+      - name: hierarchy_notes_cd
+        data_type: string
+      - name: hierarchy_cd
+        data_type: string
+      - name: parent_cd
+        data_type: string
+      - name: node_nm
+        data_type: string
+      - name: node_cd
+        data_type: string
+      - name: node_gl_account_nbr
+        data_type: int
+      - name: node_gl_account_to_nbr
+        data_type: int
+      - name: functional_area_assignment_allowed_ind
+        data_type: string
+      - name: consolidation_chart_of_accounts_used_ind
+        data_type: string
+      - name: depth_of_leaf_nbr
+        data_type: int
+      - name: depth_of_tree_nbr
+        data_type: int
+      - name: gl_account_level_1_cd
+        data_type: string
+      - name: gl_account_level_1_nm
+        data_type: string
+      - name: gl_account_level_2_cd
+        data_type: string
+      - name: gl_account_level_2_nm
+        data_type: string
+      - name: gl_account_level_3_cd
+        data_type: string
+      - name: gl_account_level_3_nm
+        data_type: string
+      - name: gl_account_level_4_cd
+        data_type: string
+      - name: gl_account_level_4_nm
+        data_type: string
+      - name: gl_account_level_5_cd
+        data_type: string
+      - name: gl_account_level_5_nm
+        data_type: string
+      - name: gl_account_level_6_cd
+        data_type: string
+      - name: gl_account_level_6_nm
+        data_type: string
+      - name: gl_account_level_7_cd
+        data_type: string
+      - name: gl_account_level_7_nm
+        data_type: string
+      - name: gl_account_level_8_cd
+        data_type: string
+      - name: gl_account_level_8_nm
+        data_type: string
+      - name: gl_account_level_9_cd
+        data_type: string
+      - name: gl_account_level_9_nm
+        data_type: string
+      - name: gl_account_level_10_cd
+        data_type: string
+      - name: gl_account_level_10_nm
+        data_type: string
+      - name: gl_account_level_11_cd
+        data_type: string
+      - name: gl_account_level_11_nm
+        data_type: string
+      - name: gl_account_level_12_cd
+        data_type: string
+      - name: gl_account_level_12_nm
+        data_type: string
+      - name: gl_account_level_13_cd
+        data_type: string
+      - name: gl_account_level_13_nm
+        data_type: string
+      - name: gl_account_level_14_cd
+        data_type: string
+      - name: gl_account_level_14_nm
+        data_type: string
+      - name: gl_account_level_15_cd
+        data_type: string
+      - name: gl_account_level_15_nm
+        data_type: string
+      - name: gl_account_level_16_cd
+        data_type: string
+      - name: gl_account_level_16_nm
+        data_type: string
+      - name: gl_account_level_17_cd
+        data_type: string
+      - name: gl_account_level_17_nm
+        data_type: string
+      - name: gl_account_level_18_cd
+        data_type: string
+      - name: gl_account_level_18_nm
+        data_type: string
+      - name: gl_account_level_19_cd
+        data_type: string
+      - name: gl_account_level_19_nm
+        data_type: string
+      - name: gl_account_level_20_cd
+        data_type: string
+      - name: gl_account_level_20_nm
+        data_type: string
+      - name: gl_account_level_21_cd
+        data_type: string
+      - name: gl_account_level_21_nm
+        data_type: string
+      - name: gl_account_level_22_cd
+        data_type: string
+      - name: gl_account_level_22_nm
+        data_type: string
+      - name: gl_account_level_23_cd
+        data_type: string
+      - name: gl_account_level_23_nm
+        data_type: string
+      - name: gl_account_level_24_cd
+        data_type: string
+      - name: gl_account_level_24_nm
+        data_type: string
+      - name: gl_account_level_25_cd
+        data_type: string
+      - name: gl_account_level_25_nm
+        data_type: string
+      - name: gl_account_level_26_cd
+        data_type: string
+      - name: gl_account_level_26_nm
+        data_type: string
+      - name: gl_account_level_27_cd
+        data_type: string
+      - name: gl_account_level_27_nm
+        data_type: string
+      - name: gl_account_level_28_cd
+        data_type: string
+      - name: gl_account_level_28_nm
+        data_type: string
+      - name: gl_account_level_29_cd
+        data_type: string
+      - name: gl_account_level_29_nm
+        data_type: string
+      - name: gl_account_level_30_cd
+        data_type: string
+      - name: gl_account_level_30_nm
+        data_type: string
+      - name: hierarchy_language_cd
+        data_type: string
+      - name: hierarchy_action_cd
+        data_type: string
+      - name: hierarchy_category_cd
+        data_type: string
+      - name: top_level_assets_financial_reporting_structure_item_cd
+        data_type: string
+      - name: recipient_business_system_id
+        data_type: string
+      - name: sender_business_system_id
+        data_type: string
+      - name: item_list_complete_transmission_ind
+        data_type: string
+      - name: hierarchy_name_list_complete_transmission_ind
+        data_type: string
+      - name: node_name_list_complete_transmission_ind
+        data_type: string
+      - name: sign_reversed_ind
+        data_type: string
+      - name: functional_area_list_complete_transmission_ind
+        data_type: string
+      - name: gl_account_list_complete_transmission_ind
+        data_type: string
+      - name: relationship_list_complete_transmission_ind
+        data_type: string
+      - name: totals_visible_ind
+        data_type: string
+      - name: credit_balance_ind
+        data_type: string
+      - name: debit_balance_ind
+        data_type: string
+      - name: created_by_user_id
+        data_type: string
+      - name: updated_by_user_id
+        data_type: string
+      - name: physical_source_cd
+        data_type: string
+      - name: gl_account_hierarchy_hist_id
+        data_type: bigint
+      - name: record_created_tmst_utc
+        data_type: date
+      - name: record_update_tmst_utc
+        data_type: date
+      - name: _gl_account_hierarchy_cleansed_latest_load_timestamp
+        data_type: date
+
+  - name: gl_account_zfsm_measures_hierarchy_dim
+    columns:
+      - name: zfsm_measure_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: created_by_user_id
+        data_type: string
+      - name: updated_by_user_id
+        data_type: string
+      - name: physical_source_cd
+        data_type: string
+      - name: active_ind
+        data_type: string
+      - name: zfsm_measure_cd
+        data_type: string
+      - name: zfsm_measure_desc
+        data_type: string
+      - name: gl_account_level_1_cd
+        data_type: string
+      - name: gl_account_level_1_nm
+        data_type: string
+      - name: gl_account_level_2_cd
+        data_type: string
+      - name: gl_account_level_2_nm
+        data_type: string
+      - name: gl_account_level_3_cd
+        data_type: string
+      - name: gl_account_level_3_nm
+        data_type: string
+      - name: gl_account_level_4_cd
+        data_type: string
+      - name: gl_account_level_4_nm
+        data_type: string
+      - name: gl_account_level_5_cd
+        data_type: string
+      - name: gl_account_level_5_nm
+        data_type: string
+      - name: gl_account_level_6_cd
+        data_type: string
+      - name: gl_account_level_6_nm
+        data_type: string
+      - name: gl_account_level_7_cd
+        data_type: string
+      - name: gl_account_level_7_nm
+        data_type: string
+      - name: gl_account_level_8_cd
+        data_type: string
+      - name: gl_account_level_8_nm
+        data_type: string
+      - name: gl_account_level_9_cd
+        data_type: string
+      - name: gl_account_level_9_nm
+        data_type: string
+      - name: gl_account_level_10_cd
+        data_type: string
+      - name: gl_account_level_10_nm
+        data_type: string
+      - name: gl_account_level_11_cd
+        data_type: string
+      - name: gl_account_level_11_nm
+        data_type: string
+      - name: gl_account_level_12_cd
+        data_type: string
+      - name: gl_account_level_12_nm
+        data_type: string
+      - name: gl_account_level_13_cd
+        data_type: string
+      - name: gl_account_level_13_nm
+        data_type: string
+      - name: record_created_tmst_utc
+        data_type: date
+      - name: record_update_tmst_utc
+        data_type: date
+
+  - name: management_gl_account_hierarchy
+    columns:
+      - name: gl_account_hierarchy_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: gl_account_nbr
+        data_type: string
+      - name: hierarchy_chart_of_accounts_cd
+        data_type: string
+      - name: hierarchy_nm
+        data_type: string
+      - name: hierarchy_liabilty_cd
+        data_type: string
+      - name: hierarchy_net_loss_cd
+        data_type: string
+      - name: hierarchy_net_profit_cd
+        data_type: string
+      - name: hierarchy_profit_loss_cd
+        data_type: string
+      - name: hierarchy_not_assignable_asset_cd
+        data_type: string
+      - name: hierarchy_notes_cd
+        data_type: string
+      - name: hierarchy_cd
+        data_type: string
+      - name: parent_cd
+        data_type: string
+      - name: node_nm
+        data_type: string
+      - name: node_cd
+        data_type: string
+      - name: node_gl_account_nbr
+        data_type: int
+      - name: node_gl_account_to_nbr
+        data_type: int
+      - name: functional_area_assignment_allowed_ind
+        data_type: string
+      - name: consolidation_chart_of_accounts_used_ind
+        data_type: string
+      - name: depth_of_leaf_nbr
+        data_type: int
+      - name: depth_of_tree_nbr
+        data_type: int
+      - name: gl_account_level_1_cd
+        data_type: string
+      - name: gl_account_level_1_nm
+        data_type: string
+      - name: gl_account_level_2_cd
+        data_type: string
+      - name: gl_account_level_2_nm
+        data_type: string
+      - name: gl_account_level_3_cd
+        data_type: string
+      - name: gl_account_level_3_nm
+        data_type: string
+      - name: gl_account_level_4_cd
+        data_type: string
+      - name: gl_account_level_4_nm
+        data_type: string
+      - name: gl_account_level_5_cd
+        data_type: string
+      - name: gl_account_level_5_nm
+        data_type: string
+      - name: gl_account_level_6_cd
+        data_type: string
+      - name: gl_account_level_6_nm
+        data_type: string
+      - name: gl_account_level_7_cd
+        data_type: string
+      - name: gl_account_level_7_nm
+        data_type: string
+      - name: gl_account_level_8_cd
+        data_type: string
+      - name: gl_account_level_8_nm
+        data_type: string
+      - name: gl_account_level_9_cd
+        data_type: string
+      - name: gl_account_level_9_nm
+        data_type: string
+      - name: gl_account_level_10_cd
+        data_type: string
+      - name: gl_account_level_10_nm
+        data_type: string
+      - name: gl_account_level_11_cd
+        data_type: string
+      - name: gl_account_level_11_nm
+        data_type: string
+      - name: gl_account_level_12_cd
+        data_type: string
+      - name: gl_account_level_12_nm
+        data_type: string
+      - name: gl_account_level_13_cd
+        data_type: string
+      - name: gl_account_level_13_nm
+        data_type: string
+      - name: gl_account_level_14_cd
+        data_type: string
+      - name: gl_account_level_14_nm
+        data_type: string
+      - name: gl_account_level_15_cd
+        data_type: string
+      - name: gl_account_level_15_nm
+        data_type: string
+      - name: gl_account_level_16_cd
+        data_type: string
+      - name: gl_account_level_16_nm
+        data_type: string
+      - name: gl_account_level_17_cd
+        data_type: string
+      - name: gl_account_level_17_nm
+        data_type: string
+      - name: gl_account_level_18_cd
+        data_type: string
+      - name: gl_account_level_18_nm
+        data_type: string
+      - name: gl_account_level_19_cd
+        data_type: string
+      - name: gl_account_level_19_nm
+        data_type: string
+      - name: gl_account_level_20_cd
+        data_type: string
+      - name: gl_account_level_20_nm
+        data_type: string
+      - name: gl_account_level_21_cd
+        data_type: string
+      - name: gl_account_level_21_nm
+        data_type: string
+      - name: gl_account_level_22_cd
+        data_type: string
+      - name: gl_account_level_22_nm
+        data_type: string
+      - name: gl_account_level_23_cd
+        data_type: string
+      - name: gl_account_level_23_nm
+        data_type: string
+      - name: gl_account_level_24_cd
+        data_type: string
+      - name: gl_account_level_24_nm
+        data_type: string
+      - name: gl_account_level_25_cd
+        data_type: string
+      - name: gl_account_level_25_nm
+        data_type: string
+      - name: gl_account_level_26_cd
+        data_type: string
+      - name: gl_account_level_26_nm
+        data_type: string
+      - name: gl_account_level_27_cd
+        data_type: string
+      - name: gl_account_level_27_nm
+        data_type: string
+      - name: gl_account_level_28_cd
+        data_type: string
+      - name: gl_account_level_28_nm
+        data_type: string
+      - name: gl_account_level_29_cd
+        data_type: string
+      - name: gl_account_level_29_nm
+        data_type: string
+      - name: gl_account_level_30_cd
+        data_type: string
+      - name: gl_account_level_30_nm
+        data_type: string
+      - name: hierarchy_language_cd
+        data_type: string
+      - name: hierarchy_action_cd
+        data_type: string
+      - name: hierarchy_category_cd
+        data_type: string
+      - name: top_level_assets_financial_reporting_structure_item_cd
+        data_type: string
+      - name: recipient_business_system_id
+        data_type: string
+      - name: sender_business_system_id
+        data_type: string
+      - name: item_list_complete_transmission_ind
+        data_type: string
+      - name: hierarchy_name_list_complete_transmission_ind
+        data_type: string
+      - name: node_name_list_complete_transmission_ind
+        data_type: string
+      - name: sign_reversed_ind
+        data_type: string
+      - name: functional_area_list_complete_transmission_ind
+        data_type: string
+      - name: gl_account_list_complete_transmission_ind
+        data_type: string
+      - name: relationship_list_complete_transmission_ind
+        data_type: string
+      - name: totals_visible_ind
+        data_type: string
+      - name: credit_balance_ind
+        data_type: string
+      - name: debit_balance_ind
+        data_type: string
+      - name: created_by_user_id
+        data_type: string
+      - name: updated_by_user_id
+        data_type: string
+      - name: physical_source_cd
+        data_type: string
+      - name: hierarchy_cd_nm
+        data_type: string
+
+  - name: PartDisChannel_profit_center_hierarchy
+    columns:
+      - name: profit_center_hierarchy_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: controlling_area_cd
+        data_type: string
+      - name: profit_center_hierarchy_nm
+        data_type: string
+      - name: profit_center_level_1_cd
+        data_type: string
+      - name: profit_center_level_1_nm
+        data_type: string
+      - name: profit_center_level_2_cd
+        data_type: string
+      - name: profit_center_level_2_nm
+        data_type: string
+      - name: profit_center_level_3_cd
+        data_type: string
+      - name: profit_center_level_3_nm
+        data_type: string
+      - name: profit_center_level_4_cd
+        data_type: string
+      - name: profit_center_level_4_nm
+        data_type: string
+      - name: profit_center_level_5_cd
+        data_type: string
+      - name: profit_center_level_5_nm
+        data_type: string
+      - name: profit_center_level_6_cd
+        data_type: string
+      - name: profit_center_level_6_nm
+        data_type: string
+      - name: profit_center_level_7_cd
+        data_type: string
+      - name: profit_center_level_7_nm
+        data_type: string
+      - name: profit_center_level_8_cd
+        data_type: string
+      - name: profit_center_level_8_nm
+        data_type: string
+      - name: profit_center_level_9_cd
+        data_type: string
+      - name: profit_center_level_9_nm
+        data_type: string
+      - name: prtrdistrchnl_profit_center_nbr
+        data_type: string
+
+  - name: profit_center
+    columns:
+      - name: profit_center_id
+        data_type: bigint
+        constraints: [primary_key, not_null]
+      - name: profit_center_nbr
+        data_type: string
+      - name: profit_center_nm
+        data_type: string
+      - name: segment_id
+        data_type: string
+      - name: geography_nm
+        data_type: string
+      - name: profit_center_channel_nm
+        data_type: string
+      - name: territory_nm
+        data_type: string
+      - name: sub_territory_nm
+        data_type: string
+      - name: begin_effective_dt
+        data_type: date
+      - name: end_effective_dt
+        data_type: date
+      - name: active_ind
+        data_type: string
+      - name: geography_sort
+        data_type: int
+      - name: operating_segment_nm
+        data_type: string
+
+  - name: retail_global_store_profile_v
+    columns:
+      - name: address_match_type_name
+        data_type: string
+      - name: store_uuid
+        data_type: string
+      - name: application_reason_desc
+        data_type: string
+      - name: brand_cd
+        data_type: string
+      - name: brand_desc
+        data_type: string
+      - name: building_floor_nbr
+        data_type: int
+      - name: change_timestamp
+        data_type: date
+      - name: china_store_sub_channel_cd
+        data_type: string
+      - name: china_store_sub_channel_desc
+        data_type: string
+      - name: city_name
+        data_type: string
+      - name: connect_global_store_key_cd
+        data_type: string
+      - name: country_cd
+        data_type: string
+      - name: country_name
+        data_type: string
+      - name: create_dt
+        data_type: string
+      - name: customer_city_local_name
+        data_type: string
+      - name: customer_id
+        data_type: string
+      - name: customer_local_province_state_name
+        data_type: string
+      - name: customer_nbr
+        data_type: string
+      - name: customer_ship_to_name
+        data_type: string
+      - name: dma_cd
+        data_type: string
+      - name: dma_desc
+        data_type: string
+      - name: fixture_type_name
+        data_type: string
+      - name: fixture_program_name
+        data_type: string
+      - name: geography_region_name
+        data_type: string
+      - name: global_store_channel_class_cd
+        data_type: string
+      - name: global_store_channel_class_desc
+        data_type: string
+      - name: greater_china_sub_territory_name
+        data_type: string
+      - name: id
+        data_type: string
+      - name: global_key_city_name
+        data_type: string
+      - name: landlord
+        data_type: string
+      - name: change_dt
+        data_type: string
+      - name: lease_expiration_dt
+        data_type: string
+      - name: lease_status_cd
+        data_type: string
+      - name: lease_status_desc
+        data_type: string
+      - name: local_language_store_street_address1
+        data_type: string
+      - name: local_language_store_street_address2
+        data_type: string
+      - name: location_name
+        data_type: string
+      - name: mall_grade
+        data_type: string
+      - name: ncx_concept
+        data_type: string
+      - name: nike_selling_space_size_quantity
+        data_type: float
+      - name: original_pos_id
+        data_type: int
+      - name: planned_retail_concept
+        data_type: string
+      - name: pos_id
+        data_type: int
+      - name: pos_retailer_location_id
+        data_type: int
+      - name: postal_cd
+        data_type: string
+      - name: province_state_name
+        data_type: string
+      - name: real_estate_category_cd
+        data_type: string
+      - name: real_estate_category_desc
+        data_type: string
+      - name: record_type
+        data_type: string
+      - name: retail_concept_actual_dt
+        data_type: string
+      - name: retail_concept_cd
+        data_type: string
+      - name: retail_concept_desc
+        data_type: string
+      - name: retail_concept_size
+        data_type: string
+      - name: retail_concept_target_dt
+        data_type: string
+      - name: retail_concept_volume
+        data_type: string
+      - name: ship_to_customer_nbr
+        data_type: string
+      - name: space_uom
+        data_type: string
+      - name: store_city_tier_nbr
+        data_type: int
+      - name: store_close_dt
+        data_type: string
+      - name: store_closure_reason_desc
+        data_type: string
+      - name: store_cd
+        data_type: string
+      - name: store_distribution_type_cd
+        data_type: string
+      - name: store_distribution_type_desc
+        data_type: string
+      - name: store_district_name
+        data_type: string
+      - name: store_environment_cd
+        data_type: string
+      - name: store_environment_desc
+        data_type: string
+      - name: store_front_name_english
+        data_type: string
+      - name: store_front_name_local
+        data_type: string
+      - name: store_hotspot_id
+        data_type: string
+      - name: store_hotspot_name_english
+        data_type: string
+      - name: store_hotspot_name_local
+        data_type: string
+      - name: store_hotspot_tier_desc
+        data_type: string
+      - name: store_id_kona
+        data_type: int
+      - name: store_last_open_dt
+        data_type: string
+      - name: store_last_renovation_dt
+        data_type: string
+      - name: store_last_renovation_type_cd
+        data_type: string
+      - name: store_last_renovation_type_desc
+        data_type: string
+      - name: store_lead_category_cd
+        data_type: string
+      - name: store_lead_category_name
+        data_type: string
+      - name: store_level
+        data_type: int
+      - name: store_name_english
+        data_type: string
+      - name: store_name_local
+        data_type: string
+      - name: store_open_dt
+        data_type: string
+      - name: store_priority
+        data_type: string
+      - name: store_selling_space_size_quantity
+        data_type: float
+      - name: store_status_cd
+        data_type: string
+      - name: store_status_desc
+        data_type: string
+      - name: store_street_address1
+        data_type: string
+      - name: store_street_address2
+        data_type: string
+      - name: store_sub_type_cd
+        data_type: string
+      - name: store_sub_type_desc
+        data_type: string
+      - name: store_tier_desc
+        data_type: string
+      - name: store_tier_id
+        data_type: int
+      - name: store_total_space_size
+        data_type: float
+      - name: telephone_nbr
+        data_type: string
+      - name: territory_name
+        data_type: string
+      - name: total_stories
+        data_type: int
+      - name: vendor_pos_key
+        data_type: string
+      - name: iso_country_cd
+        data_type: string
+      - name: default_transaction_iso_currency_cd
+        data_type: string
+      - name: store_short_name_english
+        data_type: string
+      - name: store_master_id
+        data_type: string
+      - name: geography_abbrv
+        data_type: string
+      - name: stream_change_timestamp
+        data_type: string
+      - name: space_uom_cd
+        data_type: string
+      - name: store_district_cd
+        data_type: string
+      - name: region_cd
+        data_type: string
+      - name: climate_cd
+        data_type: string
+      - name: climate_name
+        data_type: string
+      - name: comparable_status
+        data_type: string
+      - name: real_estate_type_cd
+        data_type: string
+      - name: real_estate_type_name
+        data_type: string
+      - name: retail_sales_area_cd
+        data_type: string
+      - name: retail_sales_area_name
+        data_type: string
+      - name: retail_sales_district_cd
+        data_type: string
+      - name: retail_sales_district_name
+        data_type: string
+      - name: retail_sub_concept_cd
+        data_type: string
+      - name: retail_sub_concept_name
+        data_type: string
+      - name: sales_organization_cd
+        data_type: string
+      - name: sales_organization_name
+        data_type: string
+      - name: record_type_cd
+        data_type: string
+      - name: territory_cd
+        data_type: string
+      - name: retail_sales_territory_cd
+        data_type: string
+      - name: retail_sales_territory_name
+        data_type: string
+      - name: retail_store_district_cd
+        data_type: string
+      - name: retail_store_district_name
+        data_type: string
+      - name: banner_division_text
+        data_type: string
+      - name: marketplace_store_tier_cd
+        data_type: string
+      - name: marketplace_store_tier_name
+        data_type: string
+      - name: store_score
+        data_type: int
+      - name: partner_store_positioning_cd
+        data_type: string
+      - name: partner_store_positioning_name
+        data_type: string
+      - name: geo_key_city_cd
+        data_type: string
+      - name: geo_key_city_name
+        data_type: string
+      - name: key_trade_zone_cd
+        data_type: string
+      - name: key_trade_zone_name
+        data_type: string
