@@ -1107,8 +1107,6 @@ def gen_retail_global_store_profile_v(spark: SparkSession, ctx: GenerationContex
         .withColumn("store_cd",
             F.concat(F.col("brand_cd"), F.lpad(F.col("_store_row_id").cast(StringType()), 6, "0")))
         .withColumn("store_status_cd",
-            F.array(*[F.lit(s) for s in ["OPEN", "CLOSED", "TEMP_CLOSED"]])[F.col("_store_row_id") % 10 > 1].cast(StringType()))
-        .withColumn("store_status_cd",
             F.when(F.col("_store_row_id") % 15 == 0, F.lit("CLOSED"))
             .when(F.col("_store_row_id") % 20 == 0, F.lit("TEMP_CLOSED"))
             .otherwise(F.lit("OPEN")))
