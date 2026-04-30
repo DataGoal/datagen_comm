@@ -27,7 +27,7 @@ fact_tables:
   general_ledger_fact:
     row_count: 25_00  # ← Change this to scale the entire pipeline
     # Number of Spark partitions used during generation
-    generation_partitions: 2000
+    generation_partitions: 20
     # Z-ORDER columns for Delta optimisation (applied post-write)
     zorder_by: [fiscal_year_period_nbr, profit_center_id, gl_account_nbr]
     partition_by: [fiscal_year_period_nbr]
@@ -100,13 +100,13 @@ dimension_tables:
     row_count: 8_000
 
   gl_account_zfsm_measures_hierarchy_dim:
-    row_count: 3_000
+    row_count: 3_00
 
   gl_account_hierarchy:
-    row_count: 25_000
+    row_count: 25_00
 
   management_gl_account_hierarchy:
-    row_count: 25_000
+    row_count: 25_00
 
   consolidation_functional_area_hierarchy:
     row_count: 600
@@ -115,13 +115,13 @@ dimension_tables:
     row_count: 1_200
 
   segment_cost_center_hierarchy_dim_v:
-    row_count: 15_000
+    row_count: 15_00
 
   segment_profit_center_hierarchy:
-    row_count: 2_000
+    row_count: 2_00
 
   DisChannel_cost_center_hierarchy_dim_v:
-    row_count: 10_000
+    row_count: 10_00
 
   DisChannel_profit_center_hierarchy:
     row_count: 1_500
@@ -136,4 +136,4 @@ dimension_tables:
     row_count: 20
 
   retail_global_store_profile_v:
-    row_count: 10_000
+    row_count: 10_00
