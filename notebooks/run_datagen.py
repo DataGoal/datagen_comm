@@ -82,8 +82,8 @@ for k, v in gen_cfg.items():
 # COMMAND ----------
 
 # ── 3. Create Unity Catalog schema if not present ─────────────────────────────
-create_schema_if_not_exists(spark)
-print(f"Schema ready: {gen_cfg['catalog']}.{gen_cfg['schema']}")
+# create_schema_if_not_exists(spark)
+# print(f"Schema ready: {gen_cfg['catalog']}.{gen_cfg['schema']}")
 
 # COMMAND ----------
 

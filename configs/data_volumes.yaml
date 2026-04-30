@@ -25,7 +25,7 @@ generation:
 fact_tables:
 
   general_ledger_fact:
-    row_count: 25_000_000   # ← Change this to scale the entire pipeline
+    row_count: 25_00   # ← Change this to scale the entire pipeline
     # Number of Spark partitions used during generation
     generation_partitions: 2000
     # Z-ORDER columns for Delta optimisation (applied post-write)
