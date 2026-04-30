@@ -451,5 +451,5 @@ register("consolidated_balance_sheet_fact",
 
 register("general_ledger_fact",
          gen_general_ledger_fact,
-         partition_cols=["fiscal_year_period_nbr"],
+         # partition_cols=["fiscal_year_period_nbr"],
          zorder_cols=["profit_center_id", "gl_account_nbr", "product_id"])
