@@ -22,7 +22,7 @@ import sys, os
 # In Databricks Repos this is typically /Workspace/Repos/<user>/<repo-name>
 DATAGEN_ROOT = os.environ.get(
     "DATAGEN_ROOT",
-    "/Workspace/Repos/your-user/datagen"   # ← update before running
+    "/Workspace/Users/balachandar.bhagyaraj@nike.com/datagen_comm"   # ← update before running
 )
 if DATAGEN_ROOT not in sys.path:
     sys.path.insert(0, DATAGEN_ROOT)

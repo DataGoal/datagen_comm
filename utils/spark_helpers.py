@@ -36,7 +36,7 @@ def configure_spark(spark: SparkSession) -> SparkSession:
     shuffle_partitions = cfg.get("spark_shuffle_partitions", 800)
 
     spark.conf.set("spark.sql.shuffle.partitions", str(shuffle_partitions))
-    spark.conf.set("spark.sql.adaptive.enabled", "true")
+    # spark.conf.set("spark.sql.adaptive.enabled", "true")
     spark.conf.set("spark.sql.adaptive.coalescePartitions.enabled", "true")
     spark.conf.set("spark.sql.adaptive.skewJoin.enabled", "true")
     # Delta write optimisations
