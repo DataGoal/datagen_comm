@@ -180,11 +180,11 @@ def gen_general_ledger_fact(spark: SparkSession, ctx: GenerationContext) -> Data
         .withColumn("company_currency_amt",
             sign_adjusted(
                 F.round(F.col("_base_amt") * (F.lit(0.85) + F.rand() * F.lit(0.30)), 5),
-                neg_p))
+                neg_p).cast(DecimalType(28, 5)))
         .withColumn("performance_management_currency_amt",
             sign_adjusted(
                 F.round(F.col("_base_amt") * (F.lit(0.88) + F.rand() * F.lit(0.24)), 5),
-                neg_p))
+                neg_p).cast(DecimalType(28, 5)))
         .withColumn("sales_qty",
             F.round(F.lit(d["quantities"]["sales_qty_min"]) +
                     F.rand() * F.lit(d["quantities"]["sales_qty_max"] - d["quantities"]["sales_qty_min"]), 5)
