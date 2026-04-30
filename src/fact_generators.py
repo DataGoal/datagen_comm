@@ -385,7 +385,7 @@ def gen_consolidated_balance_sheet_fact(spark: SparkSession, ctx: GenerationCont
         .withColumn("functional_area_cd",
             F.concat(F.lit("FA"), F.lpad((F.col("consolidated_balance_sheet_fact_id") % 150 + 1).cast(StringType()), 4, "0")))
         .withColumn("local_currency_cd",      _fk(currencies[:8], "consolidated_balance_sheet_fact_id"))
-        .withColumn("transaction_currency_cd",_fk(currencies[:8], "financial_statement_item_cd"))
+        .withColumn("transaction_currency_cd",_fk(currencies[:8], "consolidated_balance_sheet_fact_id"))
         .withColumn("version_nbr",            _fk(ver_codes, "consolidated_balance_sheet_fact_id"))
         .withColumn("division_nbr",
             F.lpad((F.col("consolidated_balance_sheet_fact_id") % 30 + 1).cast(StringType()), 2, "0"))
