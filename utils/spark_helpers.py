@@ -72,9 +72,7 @@ def write_table(
     fmt = cfg.get("output_format", "delta")
 
     writer = df.write.format(fmt).mode(write_mode)
-
-    if write_mode == "overwrite":
-        writer = writer.option("overwriteSchema", "true")    
+ 
 
     if partition_cols:
         writer = writer.partitionBy(*partition_cols)

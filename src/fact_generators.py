@@ -442,7 +442,6 @@ def gen_consolidated_balance_sheet_fact(spark: SparkSession, ctx: GenerationCont
 
 register("CIS_fact",
          gen_CIS_fact,
-         partition_cols=["fiscal_year_period_nbr"],
          zorder_cols=["profit_center_id"])
 
 register("consolidated_balance_sheet_fact",
