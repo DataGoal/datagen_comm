@@ -1248,6 +1248,18 @@ tables:
         data_type: string
       - name: transaction_currency_cd
         data_type: string
+      - name: __cost_center_nbr_fk_id
+        data_type: bigint
+      - name: __gl_account_nbr_fk_id
+        data_type: bigint
+      - name: Functional_Area_cd
+        data_type: string
+      - name: accounting_document_type_cd
+        data_type: string
+      - name: profit_center_nbr
+        data_type: string
+      - name: company_cd
+        data_type: string
     relationships:
       - column: accounting_document_type_id
         references:

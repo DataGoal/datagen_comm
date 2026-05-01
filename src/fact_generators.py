@@ -217,6 +217,23 @@ def gen_general_ledger_fact(spark: SparkSession, ctx: GenerationContext) -> Data
             F.when(F.col("general_ledger_fact_id") % 15 == 0, F.lit("Y")).otherwise(F.lit("N")))
         .withColumn("anaplan_corporate_ind",
             F.when(F.col("general_ledger_fact_id") % 25 == 0, F.lit("Y")).otherwise(F.lit("N")))
+
+        # ── Databricks internal FK surrogate columns (nullable) ───────────
+        .withColumn("__cost_center_nbr_fk_id", F.lit(None).cast(LongType()))
+        .withColumn("__gl_account_nbr_fk_id",  F.lit(None).cast(LongType()))
+
+        # ── Denormalized descriptive columns ─────────────────────────────
+        .withColumn("Functional_Area_cd",
+            F.concat(F.lit("FA"),
+                F.lpad((F.col("functional_area_id") % 150 + 1).cast(StringType()), 4, "0")))
+        .withColumn("accounting_document_type_cd",
+            _fk(["SA", "KR", "KZ", "DR", "DZ", "AB", "WA", "WE", "RE", "RN",
+                 "MI", "PR", "ZP", "AA", "AF", "CO", "RA", "RV", "JV", "IC"],
+                "accounting_document_type_id"))
+        .withColumn("profit_center_nbr",
+            F.lpad(F.col("profit_center_id").cast(StringType()), 7, "0"))
+        .withColumn("company_cd",
+            F.lpad((F.col("company_id") + F.lit(999)).cast(StringType()), 4, "0"))
     )
 
     return df
